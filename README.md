@@ -1,2 +1,1 @@
 # basedatos-mongo
-**mongo**
