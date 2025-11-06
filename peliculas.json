@@ -1,0 +1,102 @@
+[
+  {
+    "title": "El Viaje Eterno",
+    "premiere": "2023-05-12",
+    "director": "Lucía Ramírez",
+    "short_description": "Una aventura a través del tiempo.",
+    "long_description": "Un científico descubre cómo viajar en el tiempo y se embarca en una misión para salvar a la humanidad.",
+    "image": "https://example.com/images/viaje-eterno.jpg",
+    "duration": 128,
+    "main_actors": ["Carlos Méndez", "Sofía Torres", "Luis Gutiérrez"]
+  },
+  {
+    "title": "Sombras del Pasado",
+    "premiere": "2022-11-03",
+    "director": "Miguel Herrera",
+    "short_description": "Un thriller psicológico.",
+    "long_description": "Una mujer enfrenta los secretos de su infancia mientras investiga una serie de crímenes en su ciudad natal.",
+    "image": "https://example.com/images/sombras-pasado.jpg",
+    "duration": 115,
+    "main_actors": ["Ana López", "Javier Ruiz", "Marta Sánchez"]
+  },
+  {
+    "title": "Cielos de Fuego",
+    "premiere": "2021-08-19",
+    "director": "Fernando Díaz",
+    "short_description": "Acción en los cielos.",
+    "long_description": "Pilotos de combate luchan por sobrevivir en una guerra aérea sin precedentes.",
+    "image": "https://example.com/images/cielos-fuego.jpg",
+    "duration": 140,
+    "main_actors": ["Diego Fernández", "Clara Jiménez", "Tomás Aguilar"]
+  },
+  {
+    "title": "La Última Nota",
+    "premiere": "2020-02-14",
+    "director": "Isabel Moreno",
+    "short_description": "Drama musical.",
+    "long_description": "Un pianista retirado encuentra inspiración en una joven prodigio que lucha por su lugar en el mundo.",
+    "image": "https://example.com/images/ultima-nota.jpg",
+    "duration": 102,
+    "main_actors": ["Pablo Castro", "Elena Rivas", "Mario Gómez"]
+  },
+  {
+    "title": "Código Fantasma",
+    "premiere": "2023-09-30",
+    "director": "Raúl Martínez",
+    "short_description": "Ciberespionaje y traición.",
+    "long_description": "Un hacker descubre una conspiración global que pone en riesgo la seguridad de millones.",
+    "image": "https://example.com/images/codigo-fantasma.jpg",
+    "duration": 125,
+    "main_actors": ["Laura Peña", "Andrés Salas", "Gabriel Ortega"]
+  },
+  {
+    "title": "Bajo la Lluvia",
+    "premiere": "2022-04-22",
+    "director": "Carla Núñez",
+    "short_description": "Romance inesperado.",
+    "long_description": "Dos desconocidos se encuentran durante una tormenta y descubren que sus vidas están más conectadas de lo que creen.",
+    "image": "https://example.com/images/bajo-lluvia.jpg",
+    "duration": 98,
+    "main_actors": ["Valeria Molina", "Esteban Cruz", "Natalia Romero"]
+  },
+  {
+    "title": "Horizonte Perdido",
+    "premiere": "2021-12-10",
+    "director": "Jorge Paredes",
+    "short_description": "Exploración y misterio.",
+    "long_description": "Un grupo de arqueólogos descubre una civilización oculta en lo profundo de la selva amazónica.",
+    "image": "https://example.com/images/horizonte-perdido.jpg",
+    "duration": 132,
+    "main_actors": ["Camila Vargas", "Rodrigo León", "Sara Méndez"]
+  },
+  {
+    "title": "Eco del Silencio",
+    "premiere": "2020-07-07",
+    "director": "Natalia Fuentes",
+    "short_description": "Suspenso en un pueblo aislado.",
+    "long_description": "Un periodista investiga la desaparición de varios habitantes en un pueblo donde nadie habla.",
+    "image": "https://example.com/images/eco-silencio.jpg",
+    "duration": 110,
+    "main_actors": ["Iván Castillo", "Lucía Gómez", "Pedro Navarro"]
+  },
+  {
+    "title": "Luz de Medianoche",
+    "premiere": "2023-01-01",
+    "director": "Santiago Bravo",
+    "short_description": "Fantasía y redención.",
+    "long_description": "Un joven descubre que tiene el poder de cambiar el destino de las personas a través de sus sueños.",
+    "image": "https://example.com/images/luz-medianoche.jpg",
+    "duration": 120,
+    "main_actors": ["Daniela Ruiz", "Héctor Molina", "Rosa Pérez"]
+  },
+  {
+    "title": "El Guardián del Tiempo",
+    "premiere": "2021-06-18",
+    "director": "Alberto Torres",
+    "short_description": "Aventura épica.",
+    "long_description": "Un relojero descubre que su taller es la puerta a una dimensión donde el tiempo se puede manipular.",
+    "image": "https://example.com/images/guardian-tiempo.jpg",
+    "duration": 135,
+    "main_actors": ["Federico Ramos", "Inés Delgado", "Julián Estrada"]
+  }
+]
