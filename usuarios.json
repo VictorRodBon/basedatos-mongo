@@ -1,0 +1,21 @@
+{
+    "_id": ObjectId(),
+"nombre": "Laura",
+"correo": "laura@email.com",
+"favoritos": [
+    {
+        "$oid": "655f1b4d1234567890abcdef"
+    }
+],
+"valoraciones": [
+    {
+        "pelicula": {
+            "$oid": "655f1b4d1234567890abcdef"
+        },
+        "puntuacion": 10
+    }
+],
+"fechaRegistro": {
+    "$date": "2025-11-09T15:30:00.000Z"
+}
+}

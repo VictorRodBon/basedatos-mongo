@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors=require('cors');
 const rutasPeliculas = require('./rutas/rutasPeliculas');
+const rutasUsuarios = require('./rutas/rutasUsuarios');
 
 const app = express();
 // Permite recibir JSON en peticiones POST
@@ -20,6 +21,7 @@ mongoose.connect('mongodb://root:example@localhost:27017/2daw?authSource=admin')
   .catch(err => console.error('Error al conectar MongoDB', err));
 
 app.use('/peliculas', rutasPeliculas);
+app.use('/usuarios', rutasUsuarios);
 
 app.use((req, res) => {
   res.status(404).send('Ruta no encontrada');
