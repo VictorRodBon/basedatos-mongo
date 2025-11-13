@@ -8,6 +8,7 @@ const morgan = require ('morgan');
 const cors=require('cors');
 const rutasPeliculas = require('./rutas/rutasPeliculas');
 const rutasUsuarios = require('./rutas/rutasUsuarios2');
+const rutasOpiniones = require('./rutas/rutasOpiniones');
 
 const app = express();
 
@@ -34,6 +35,7 @@ mongoose.connect('mongodb://root:example@localhost:27017/2daw?authSource=admin')
 
 app.use('/peliculas', rutasPeliculas);
 app.use('/usuarios', rutasUsuarios);
+app.use('/opiniones', rutasOpiniones);
 
 app.use((req, res) => {
   res.status(404).send('Ruta no encontrada');

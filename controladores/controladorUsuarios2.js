@@ -37,10 +37,10 @@ export const usuarioRegistro = async (req, res) => {
 // Login
 export const usuarioLogin = async (req, res) => {
   try {
-    const { email, clave } = req.body;
+    const { correo, clave } = req.body;
 
     // Buscar usuario
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ correo });
     if (!user) return res.status(400).json({ message: 'Usuario no encontrado' });
 
     // Verificar contraseña
@@ -74,3 +74,6 @@ export const getPerfil = (req, res) => {
     res.status(401).json({ message: 'Token inválido o expirado' });
   }
 };
+
+
+

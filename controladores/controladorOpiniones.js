@@ -1,76 +1,55 @@
-const Usuario= require('../modelos/Usuarios');
+const Opinion = require('../modelos/Opiniones');
 
-async function getUsuarios(req, res) {
+async function getOpiniones(req, res) {
     try {
-        const usuarios = await Usuario.find()
-            .populate('favoritos')
-            .populate('valoraciones.pelicula');
-
-        res.status(200).json(usuarios);
+        const opiniones = await Opinion.find()
+            .populate('usuario', 'nombre correo')   // ← datos del usuario
+            .populate('pelicula', 'title director image'); // ← datos de la película
+        res.status(200).json(opiniones);
     } catch (err) {
-        console.error("Error en getUsuarios:", err.message);
-
-        res.status(500).json({ "error": "Error al obtener los usuarios" });
+        console.error("Error en getOpiniones:", err.message);
+        res.status(500).json({ error: "Error al obtener las opiniones" });
     }
 }
 
-async function getUsuario(req, res) {
+async function getOpinion(req, res) {
     try {
-        const usuario = await Usuario.findById(req.params.id)
-            .populate('favoritos')
-            .populate('valoraciones.pelicula');
+        const opinion = await Opinion.findById(req.params.id)
+            .populate('usuario', 'nombre correo perfil')
+            .populate('pelicula', 'title director image');
 
-        if (!usuario) {
-            return res.status(404).json({ status: "Usuario no encontrado" });
-        }
-
-        res.status(200).json(usuario);
+        if (!opinion) return res.status(404).json({ status: "Error opinión no encontrada" });
+        res.status(200).json(opinion);
     } catch (err) {
-        console.error("Error en getUsuario:", err.message);
-        res.status(500).json({ status: "Error al obtener el usuario" });
+        console.error("Error en getOpinion:", err.message);
+        res.status(500).json({ status: "Error al obtener la opinión" });
     }
 }
 
-
-async function crearUsuario(req, res) {
+async function crearOpinion(req, res) {
     try {
-        if (!req.body.nombre || !req.body.correo) {
-            return res.status(400).json({ status: "Faltan campos obligatorios" });
-        }
-        const newUsuario = new Usuario(req.body);
-        await newUsuario.save();
-        res.status(201).json(newUsuario);
+        const newOpinion = new Opinion(req.body);
+        await newOpinion.save();
+        res.status(201).json(newOpinion);
     } catch (err) {
-        console.error("Error en crearUsuario:", err.message);
-        res.status(400).json({ "status": "Error al crear el usuario" });
-
+        console.error("Error en crearOpinion:", err.message);
+        res.status(400).json({ status: "Error al crear la opinión" });
     }
 }
 
-async function actualizarUsuario(req, res) {
+async function actualizarOpinion(req, res) {
     try {
-        const updatedUsuario = await Usuario.findByIdAndUpdate(
+        const updatedOpinion = await Opinion.findByIdAndUpdate(
             req.params.id,
             req.body,
-            { new: true } // Para devolver el usuario actualizado
+            { new: true }
         );
-        if (!updatedUsuario) return res.status(404).json({ "status": "Error usuario no encontrado" });
-        res.status(200).json(updatedUsuario);
+        if (!updatedOpinion) return res.status(404).json({ status: "Error opinión no encontrada" });
+        res.status(200).json(updatedOpinion);
     } catch (err) {
-        console.error("Error en actualizarUsuario:", err.message);
-        res.status(400).json({ "status": "Error al actualizar el usuario" });
+        console.error("Error en actualizarOpinion:", err.message);
+        res.status(400).json({ status: "Error al actualizar la opinión" });
     }
 }
 
-async function eliminarUsuario(req, res) {
-    try {
-        const deletedUsuario = await Usuario.findByIdAndDelete(req.params.id);
-        if (!deletedUsuario) return res.status(404).json({ "status": "Error usuario no encontrado" });
-        res.status(200).json({ "status": "operación realizada" });
-    } catch (err) {
-        console.error("Error en actualizarUsuario:", err.message);
-        res.status(500).json({ "status": "Error al eliminar el usuario" });
-    }
-}
-
-module.exports = { getUsuarios, getUsuario, crearUsuario, actualizarUsuario, eliminarUsuario };
+module.exports = { getOpiniones, getOpinion, crearOpinion, actualizarOpinion };
