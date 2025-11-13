@@ -28,6 +28,7 @@ async function getOpinion(req, res) {
 
 async function crearOpinion(req, res) {
     try {
+        console.log('Body recibido:', req.body);
         const newOpinion = new Opinion(req.body);
         await newOpinion.save();
         res.status(201).json(newOpinion);
