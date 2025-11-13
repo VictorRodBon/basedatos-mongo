@@ -1,10 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
+const fs =require ('fs');
+const path = require ('path');
+const morgan = require ('morgan');
+
 const cors=require('cors');
 const rutasPeliculas = require('./rutas/rutasPeliculas');
-const rutasUsuarios = require('./rutas/rutasUsuarios');
+const rutasUsuarios = require('./rutas/rutasUsuarios2');
 
 const app = express();
+
+// Crear un stream para escribir en el archivo de log
+const logStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+// Middleware de logging tipo Apache combinado
+app.use(morgan('combined', { stream: logStream }));
+
+
 // Permite recibir JSON en peticiones POST
 app.use(express.json());
 
