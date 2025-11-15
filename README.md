@@ -22,6 +22,14 @@ Este proyecto implementa un backend con Node.js, Express y MongoDB, preparado pa
 - Opcional: [Node.js](https://nodejs.org/) si quieres ejecutar el backend fuera de Docker
 
 ---
+## APARTADOS
+
+### Crear y utilizar
+[X] Añadir función para los usuarios (falta integración con angular (login y registro))
+[ ] Añadir validación al crear opiniones (falta integración con angular)
+[ ] Añadir validación al crear peliculas (solo empleados) (falta integración con angular)
+
+---
 
 ## ⚙️ Instalación y ejecución
 
@@ -31,4 +39,3 @@ Este proyecto implementa un backend con Node.js, Express y MongoDB, preparado pa
 git clone https://github.com/usuario/backend-docker-mongodb.git
 cd backend-docker-mongodb
 ```
-

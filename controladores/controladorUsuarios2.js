@@ -1,32 +1,40 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import User from '../modelos/Usuario2.js';
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const Usuario2 = require('../modelos/Usuario2.js');
+const { validationResult } = require('express-validator');
 
 // Clave secreta para JWT (en producción usar variable de entorno)
 const SECRET_KEY = 'clave_super_secreta'; // process.env.SECRET_KEY
 
 // Registro de usuario
-export const usuarioRegistro = async (req, res) => {
+const usuarioRegistro = async (req, res) => {
+  const errores = validationResult(req);
+  if (!errores.isEmpty()) {
+    return res.status(400).json({ errores: errores.array() });
+  }
   try {
     const { codigo, nombre, correo, clave } = req.body;
 
     // Verificar si ya existe
-    const existingUser = await User.findOne({ correo });
-    if (existingUser) return res.status(400).json({ message: 'El usuario ya existe' });
+    const existingUsuario = await Usuario2.findOne({ correo });
+    if (existingUsuario) return res.status(400).json({ message: 'El usuario ya existe' });
 
     // Cifrar contraseña
     const hashedPassword = await bcrypt.hash(clave, 10);
 
     // Crear usuario
-    const user = new User({ codigo,
-                            nombre, 
-                            correo, 
-                            clave: hashedPassword, 
-                            estado: "activo", 
-                            numErrores:0, 
-                            perfil: "usuario" 
-                        });
-    await user.save();
+    const nuevoUsuario = new Usuario2({
+      codigo,
+      nombre,
+      correo,
+      clave: hashedPassword,
+      estado: "activo",
+      perfil: "usuario",
+      numErrores: 0,
+      ultimoAcceso: new Date() // opcional, ya tiene default
+    });
+
+    await nuevoUsuario.save();
 
     res.status(201).json({ message: 'Usuario registrado correctamente' });
   } catch (error) {
@@ -35,45 +43,50 @@ export const usuarioRegistro = async (req, res) => {
 };
 
 // Login
-export const usuarioLogin = async (req, res) => {
+const usuarioLogin = async (req, res) => {
   try {
     const { correo, clave } = req.body;
 
     // Buscar usuario
-    const user = await User.findOne({ correo });
-    if (!user) return res.status(400).json({ message: 'Usuario no encontrado' });
+    const usuario = await Usuario2.findOne({ correo });
+    if (!usuario) return res.status(400).json({ message: 'Usuario no encontrado' });
 
     // Verificar contraseña
-    const isMatch = await bcrypt.compare(clave, user.clave);
-    if (!isMatch) return res.status(400).json({ message: 'Usuarios o clave incorrecta' });
+    const isMatch = await bcrypt.compare(clave, usuario.clave);
+    if (!isMatch) return res.status(400).json({ message: 'Usuario o clave incorrecta' });
 
     // Crear token JWT
-    const token = jwt.sign({ id: user._id, email: user.correo }, SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ id: usuario._id, correo: usuario.correo }, SECRET_KEY, { expiresIn: '1h' });
     res.json({ message: 'Login correcto', token });
   } catch (error) {
     res.status(500).json({ message: 'Error en el login', error });
   }
 };
 
-// Logout: el token se debe eliminar en el cliente, en el servidor es válido mientras no expire
-export const usuarioLogout = (req, res) => {
+// Logout
+const usuarioLogout = (req, res) => {
   res.json({ message: 'Logout correcto' });
 };
 
-//Ejemplo de ruta protegida
-export const getPerfil = (req, res) => {
+// Perfil protegido
+const getPerfil = (req, res) => {
   try {
     const authHeader = req.headers['authorization']; // Authorization: Bearer <token>
     if (!authHeader) return res.status(401).json({ message: 'No autenticado' });
 
-    const token = authHeader.split(' ')[1]; // extrae solo el token
+    const token = authHeader.split(' ')[1];
     if (!token) return res.status(401).json({ message: 'No autenticado' });
+
     const decoded = jwt.verify(token, SECRET_KEY);
-    res.json({ message: 'Perfil del usuario', user: decoded });
+    res.json({ message: 'Perfil del usuario', usuario: decoded });
   } catch (error) {
     res.status(401).json({ message: 'Token inválido o expirado' });
   }
 };
 
-
-
+module.exports = {
+  usuarioRegistro,
+  usuarioLogin,
+  usuarioLogout,
+  getPerfil
+};
