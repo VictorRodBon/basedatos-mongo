@@ -52,5 +52,14 @@ async function actualizarOpinion(req, res) {
         res.status(400).json({ status: "Error al actualizar la opinión" });
     }
 }
-
+async function borrarOpinion(req, res){
+    try{
+        const deleteOpinion=await Opinion.findByIdAndDelete(req.params.id);
+        if(!deleteOpinion) return res.status(404).json({"status":"Error: Monitor no encontrado"});
+        res.status(200).json({"status":"operación realizada"});
+    }catch(err){
+        console.error("Error en eliminarOpinion:", err.message);
+        res.status(500).json({"status":"Error al eliminar una opiinon"});
+    }
+}
 module.exports = { getOpiniones, getOpinion, crearOpinion, actualizarOpinion };

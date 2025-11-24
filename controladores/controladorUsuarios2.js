@@ -49,11 +49,11 @@ const usuarioLogin = async (req, res) => {
 
     // Buscar usuario
     const usuario = await Usuario2.findOne({ correo });
-    if (!usuario) return res.status(400).json({ message: 'Usuario no encontrado' });
+    if (!usuario) return res.status(401).json({ message: 'Usuario no encontrado' });
 
     // Verificar contraseña
     const isMatch = await bcrypt.compare(clave, usuario.clave);
-    if (!isMatch) return res.status(400).json({ message: 'Usuario o clave incorrecta' });
+    if (!isMatch) return res.status(401).json({ message: 'Usuario o clave incorrecta' });
 
     // Crear token JWT
     const token = jwt.sign({ id: usuario._id, correo: usuario.correo }, SECRET_KEY, { expiresIn: '1h' });

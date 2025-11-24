@@ -1,21 +1,52 @@
-{
-    "_id": ObjectId(),
-"nombre": "Laura",
-"correo": "laura@email.com",
-"favoritos": [
-    {
-        "$oid": "655f1b4d1234567890abcdef"
-    }
-],
-"valoraciones": [
-    {
-        "pelicula": {
-            "$oid": "655f1b4d1234567890abcdef"
-        },
-        "puntuacion": 10
-    }
-],
-"fechaRegistro": {
-    "$date": "2025-11-09T15:30:00.000Z"
-}
-}
+[
+  {
+    "codigo": "USR001",
+    "nombre": "Ana Martínez",
+    "correo": "ana.martinez@example.com",
+    "clave": "claveAna123",
+    "estado": "activo",
+    "perfil": "admin",
+    "numErrores": 0,
+    "ultimoAcceso": "2025-11-10T09:30:00Z"
+  },
+  {
+    "codigo": "USR002",
+    "nombre": "Carlos López",
+    "correo": "carlos.lopez@example.com",
+    "clave": "claveCarlos456",
+    "estado": "activo",
+    "perfil": "usuario",
+    "numErrores": 2,
+    "ultimoAcceso": "2025-11-12T14:15:00Z"
+  },
+  {
+    "codigo": "USR003",
+    "nombre": "Lucía Fernández",
+    "correo": "lucia.fernandez@example.com",
+    "clave": "luciaPass789",
+    "estado": "inactivo",
+    "perfil": "usuario",
+    "numErrores": 5,
+    "ultimoAcceso": "2025-11-08T20:45:00Z"
+  },
+  {
+    "codigo": "USR004",
+    "nombre": "Miguel Torres",
+    "correo": "miguel.torres@example.com",
+    "clave": "miguelClave321",
+    "estado": "activo",
+    "perfil": "moderador",
+    "numErrores": 1,
+    "ultimoAcceso": "2025-11-15T11:00:00Z"
+  },
+  {
+    "codigo": "USR005",
+    "nombre": "Sofía García",
+    "correo": "sofia.garcia@example.com",
+    "clave": "sofiaClave654",
+    "estado": "activo",
+    "perfil": "usuario",
+    "numErrores": 0,
+    "ultimoAcceso": "2025-11-16T18:20:00Z"
+  }
+]

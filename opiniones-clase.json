@@ -1,0 +1,30 @@
+[
+  {
+    "usuario": "69159942962d04019fce5474",
+    "pelicula": "69190432dfde82e4b0466f40",
+    "puntuacion": 9,
+    "descripcion": "Una historia fascinante que mezcla ciencia y emoción. Me atrapó desde el principio.",
+    "fechaRegistro": "2025-11-19T12:45:00Z"
+  },
+  {
+    "usuario": "691b051c7024d58282e6191",
+    "pelicula": "69190432dfde82e4b0466f42",
+    "puntuacion": 8,
+    "descripcion": "Muy buen thriller psicológico. Ana López está increíble en su papel.",
+    "fechaRegistro": "2025-11-19T12:45:00Z"
+  },
+  {
+    "usuario": "691b05147024d58282e618e",
+    "pelicula": "69190432dfde82e4b0466f44",
+    "puntuacion": 7,
+    "descripcion": "Buena acción y efectos, aunque la historia podría haber sido más profunda.",
+    "fechaRegistro": "2025-11-19T12:45:00Z"
+  },
+  {
+    "usuario": "691b051c7024d58282e6191",
+    "pelicula": "69190452962d0149fce5f474",
+    "puntuacion": 10,
+    "descripcion": "Un clásico que nunca pasa de moda. Filosofía, acción y estilo en una sola película.",
+    "fechaRegistro": "2025-11-19T12:45:00Z"
+  }
+]

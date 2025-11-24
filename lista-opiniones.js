@@ -1,44 +1,37 @@
-const opiniones = [
-    {
-    usuario: '6915f1f504985428520c18ae3', // Laura Sánchez
-    pelicula: '630c15fd1fee1f195a68a64c', // El Viaje Eterno
-    puntuacion: 9,
-    descripcion: 'Una historia fascinante que mezcla ciencia y emoción. Me encantó la actuación de Sofía Torres.',
-    fechaRegistro: new Date('2025-11-10T19: 30: 00.000Z')
-    },
-    {
-    usuario: '6915f1f504985428520c18ae6', // Carlos Pérez
-    pelicula: '630c15fd1fee1f195a68a64d', // Sombras del Pasado
-    puntuacion: 7,
-    descripcion: 'Buena ambientación y misterio, aunque el ritmo decae en el segundo acto.',
-    fechaRegistro: new Date()
-    },
-    {
-    usuario: '6915f1f504985428520c18ae5', // Ana Torres
-    pelicula: '630c15fd1fee1f195a68a64e', // Cielos de Fuego
-    puntuacion: 8,
-    descripcion: 'Visualmente impactante. Clara Jiménez se roba cada escena.',
-    fechaRegistro: new Date('2025-10-01T08: 30: 00.000Z')
-    },
-    {
-    usuario: '6915f1f504985428520c18ae4', // Miguel Ruiz
-    pelicula: '630c15fd1fee1f195a68a64f', // La Última Nota
-    puntuacion: 10,
-    descripcion: 'Una obra maestra. La música y la narrativa se fusionan de forma sublime.',
-    fechaRegistro: new Date()
-    },
-    {
-    usuario: '6915f1f504985428520c18ae3', // Laura Sánchez
-    pelicula: '630c15fd1fee1f195a68a64e', // Cielos de Fuego
-    puntuacion: 6,
-    descripcion: 'Interesante propuesta, pero esperaba más profundidad en los personajes.',
-    fechaRegistro: new Date('2025-11-10T20: 00: 00.000Z')
-    },
-    {
-    usuario: '6915f1f504985428520c18ae6', // Carlos Pérez
-    pelicula: '630c15fd1fee1f195a68a64c', // El Viaje Eterno
-    puntuacion: 8,
-    descripcion: 'Muy entretenida. La idea del viaje temporal está bien ejecutada.',
-    fechaRegistro: new Date()
-    }
-];
+[
+  {
+    "usuario": "655f1a2b3c4d5e6f7a8b9c01",
+    "puntuacion": 9,
+    "descripcion": "Una película muy emocionante, me mantuvo enganchada todo el tiempo.",
+    "pelicula": "655f1a2b3c4d5e6f7a8b9c11",
+    "fechaRegistro": "2025-11-10T10:30:00Z"
+  },
+  {
+    "usuario": "655f1a2b3c4d5e6f7a8b9c02",
+    "puntuacion": 7,
+    "descripcion": "Buena trama, aunque el final fue algo predecible.",
+    "pelicula": "655f1a2b3c4d5e6f7a8b9c12",
+    "fechaRegistro": "2025-11-11T15:45:00Z"
+  },
+  {
+    "usuario": "655f1a2b3c4d5e6f7a8b9c03",
+    "puntuacion": 5,
+    "descripcion": "No me convenció, esperaba más acción.",
+    "pelicula": "655f1a2b3c4d5e6f7a8b9c13",
+    "fechaRegistro": "2025-11-12T20:10:00Z"
+  },
+  {
+    "usuario": "655f1a2b3c4d5e6f7a8b9c04",
+    "puntuacion": 8,
+    "descripcion": "Gran actuación de los protagonistas, muy recomendable.",
+    "pelicula": "655f1a2b3c4d5e6f7a8b9c14",
+    "fechaRegistro": "2025-11-13T09:00:00Z"
+  },
+  {
+    "usuario": "655f1a2b3c4d5e6f7a8b9c05",
+    "puntuacion": 10,
+    "descripcion": "Una obra maestra, la mejor que he visto este año.",
+    "pelicula": "655f1a2b3c4d5e6f7a8b9c15",
+    "fechaRegistro": "2025-11-14T18:25:00Z"
+  }
+]
