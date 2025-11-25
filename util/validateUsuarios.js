@@ -6,7 +6,7 @@ validarRegistro = [
         .notEmpty().withMessage('El codigo es obligatorio')
         .isLength({ min: 3 }).withMessage('El codigo debe tener al menos 3 caracteres')
         .escape(),
-    body('correo')
+    body('email')
         .trim()
         .notEmpty().withMessage('El email es obligatorio')
         .isEmail().withMessage('Debe ser un email válido')
@@ -23,10 +23,10 @@ validarRegistro = [
 ];
 
 validarLogin = [
-    body('correo')
+    body('email')
         .trim()
-        .notEmpty().withMessage('El correo es obligatorio')
-        .isEmail().withMessage('Debe ser un correo válido')
+        .notEmpty().withMessage('El email es obligatorio')
+        .isEmail().withMessage('Debe ser un email válido')
         .escape(),
     body('clave')
         .notEmpty().withMessage('La contraseña es obligatoria')

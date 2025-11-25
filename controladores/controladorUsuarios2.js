@@ -13,10 +13,10 @@ const usuarioRegistro = async (req, res) => {
     return res.status(400).json({ errores: errores.array() });
   }
   try {
-    const { codigo, nombre, correo, clave } = req.body;
+    const { codigo, nombre, email, clave } = req.body;
 
     // Verificar si ya existe
-    const existingUsuario = await Usuario2.findOne({ correo });
+    const existingUsuario = await Usuario2.findOne({ email });
     if (existingUsuario) return res.status(400).json({ message: 'El usuario ya existe' });
 
     // Cifrar contraseña
@@ -26,12 +26,12 @@ const usuarioRegistro = async (req, res) => {
     const nuevoUsuario = new Usuario2({
       codigo,
       nombre,
-      correo,
+      email,
       clave: hashedPassword,
       estado: "activo",
       perfil: "usuario",
       numErrores: 0,
-      ultimoAcceso: new Date() // opcional, ya tiene default
+      //ultimoAcceso: new Date() // opcional, ya tiene default
     });
 
     await nuevoUsuario.save();
@@ -42,13 +42,33 @@ const usuarioRegistro = async (req, res) => {
   }
 };
 
+// modificar
+/*router.put('/modificar/:codigo', async (req, res) => {
+  try {
+    const { nombre, email, clave } = req.body;
+    const updateData = { nombre, email };
+
+    if (clave) {
+      const hashedPassword = await bcrypt.hash(clave, 10);
+      updateData.clave = hashedPassword;
+    }
+
+    await Usuario2.findOneAndUpdate({ codigo: req.params.codigo }, updateData);
+    res.json({ message: 'Usuario modificado correctamente' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error al modificar usuario', error });
+  }
+});*/
+
+
 // Login
 const usuarioLogin = async (req, res) => {
   try {
-    const { correo, clave } = req.body;
+
+    const { email, clave } = req.body;
 
     // Buscar usuario
-    const usuario = await Usuario2.findOne({ correo });
+    const usuario = await Usuario2.findOne({ email });
     if (!usuario) return res.status(401).json({ message: 'Usuario no encontrado' });
 
     // Verificar contraseña
@@ -56,8 +76,9 @@ const usuarioLogin = async (req, res) => {
     if (!isMatch) return res.status(401).json({ message: 'Usuario o clave incorrecta' });
 
     // Crear token JWT
-    const token = jwt.sign({ id: usuario._id, correo: usuario.correo }, SECRET_KEY, { expiresIn: '1h' });
-    res.json({ message: 'Login correcto', token });
+    const token = jwt.sign({ id: usuario._id, email: usuario.email }, SECRET_KEY, { expiresIn: '1h' });
+    //res.json({ message: 'Login correcto', token});
+    res.json({ message: 'Login correcto', token, usuario: { _id: usuario._id } });
   } catch (error) {
     res.status(500).json({ message: 'Error en el login', error });
   }
