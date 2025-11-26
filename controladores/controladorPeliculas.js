@@ -25,6 +25,7 @@ async function getPelicula(req, res) {
 
 async function crearPelicula(req, res) {
     try {
+        console.log('Body recibido:', req.body);
         const { title, premiere, director, short_description, long_description, image, duration, main_actors } = req.body;
         
         // Validación básica
