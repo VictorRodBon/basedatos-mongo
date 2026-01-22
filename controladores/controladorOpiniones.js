@@ -52,14 +52,63 @@ async function actualizarOpinion(req, res) {
         res.status(400).json({ status: "Error al actualizar la opinión" });
     }
 }
-async function borrarOpinion(req, res){
-    try{
-        const deleteOpinion=await Opinion.findByIdAndDelete(req.params.id);
-        if(!deleteOpinion) return res.status(404).json({"status":"Error: Monitor no encontrado"});
-        res.status(200).json({"status":"operación realizada"});
-    }catch(err){
+async function borrarOpinion(req, res) {
+    try {
+        const deleteOpinion = await Opinion.findByIdAndDelete(req.params.id);
+        if (!deleteOpinion) return res.status(404).json({ "status": "Error: Monitor no encontrado" });
+        res.status(200).json({ "status": "operación realizada" });
+    } catch (err) {
         console.error("Error en eliminarOpinion:", err.message);
-        res.status(500).json({"status":"Error al eliminar una opiinon"});
+        res.status(500).json({ "status": "Error al eliminar una opinion" });
     }
 }
-module.exports = { getOpiniones, getOpinion, crearOpinion, actualizarOpinion };
+
+async function agruparOpiniones(req, res) {
+    try {
+        const { desde, hasta } = req.query;
+
+        if (!desde || !hasta) {
+            return res.status(400).json({ status: "Error", mensaje: "Debes enviar los parámetros 'desde' y 'hasta'" });
+        }
+
+        const inicio = new Date(desde);
+        const fin = new Date(hasta);
+
+        const resultado = await Opinion.aggregate([
+            {
+                $match: {
+                    fechaRegistro: {
+                        $gte: inicio,
+                        $lte: fin
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: {
+                        $dateFromParts: {
+                            year: { $year: "$fechaRegistro" },
+                            month: { $month: "$fechaRegistro" },
+                            day: { $dayOfMonth: "$fechaRegistro" }
+                        }
+                    },
+                    total: { $sum: 1 }
+                }
+            },
+            {
+                $sort: {
+                    _id: 1
+                }
+            }
+        ]);
+
+        res.status(200).json(resultado);
+
+    } catch (err) {
+        console.error("Error al obtener las opiniones por fecha:", err);
+        res.status(500).json({ status: "Error al obtener opiniones por fecha" });
+    }
+}
+
+
+module.exports = { getOpiniones, getOpinion, crearOpinion, actualizarOpinion, agruparOpiniones };
