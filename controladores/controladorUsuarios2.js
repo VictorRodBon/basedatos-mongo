@@ -76,7 +76,7 @@ const usuarioLogin = async (req, res) => {
     if (!isMatch) return res.status(401).json({ message: 'Usuario o clave incorrecta' });
 
     // Crear token JWT
-    const token = jwt.sign({ id: usuario._id, email: usuario.email }, SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ id: usuario._id, email: usuario.email, perfil:usuario.perfil }, SECRET_KEY, { expiresIn: '1h' });
     //res.json({ message: 'Login correcto', token});
     res.json({ message: 'Login correcto', token, usuario: { _id: usuario._id } });
   } catch (error) {
