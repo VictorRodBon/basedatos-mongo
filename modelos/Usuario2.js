@@ -8,7 +8,8 @@ const UsuarioSchema = new mongoose.Schema({
   estado: { type: String, required: true },
   perfil: { type: String, required: true },
   numErrores: { type: Number, required: true },
-  ultimoAcceso: { type: Date, default: Date.now }
+  ultimoAcceso: { type: Date, default: Date.now },
+  foto: {type: String, default: "default.jpg"}
 });
 
 module.exports = mongoose.model('Usuario2', UsuarioSchema);

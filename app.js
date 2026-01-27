@@ -37,9 +37,15 @@ app.use('/peliculas', rutasPeliculas);
 app.use('/usuarios', rutasUsuarios);
 app.use('/opiniones', rutasOpiniones);
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+//console.log('STATIC PATH:', path.join(__dirname, 'uploads'));
+
+
 app.use((req, res) => {
   res.status(404).send('Ruta no encontrada');
 });
+
 
 const PORT = 3000;
 app.listen(PORT, () => console.log(`Servidor en http://localhost:${PORT}`));

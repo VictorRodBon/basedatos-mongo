@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Usuario2 = require('../modelos/Usuario2.js');
 const { validationResult } = require('express-validator');
+const upload = require('../middleware/upload');
+
 
 // Clave secreta para JWT (en producción usar variable de entorno)
 const SECRET_KEY = 'clave_super_secreta'; // process.env.SECRET_KEY
@@ -31,6 +33,7 @@ const usuarioRegistro = async (req, res) => {
       estado: "activo",
       perfil: "usuario",
       numErrores: 0,
+      foto:"default.png",
       //ultimoAcceso: new Date() // opcional, ya tiene default
     });
 
@@ -60,6 +63,37 @@ const usuarioRegistro = async (req, res) => {
   }
 });*/
 
+const actualizarFoto = async (req, res) => {
+  try {
+    const usuarioId = req.params.id;
+
+    if (!req.file) {
+      return res.status(400).json({ message: "No se ha enviado ninguna imagen" });
+    }
+
+    const nombreArchivo = req.file.filename;
+
+    const usuarioActualizado = await Usuario2.findByIdAndUpdate(
+      usuarioId,
+      { foto: nombreArchivo },
+      { new: true }
+    );
+
+    if (!usuarioActualizado) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    res.json({
+      message: "Foto actualizada correctamente",
+      foto: nombreArchivo
+    });
+
+  } catch (error) {
+    res.status(500).json({ message: "Error al cambiar la foto de perfil", error });
+  }
+};
+
+
 
 // Login
 const usuarioLogin = async (req, res) => {
@@ -76,7 +110,7 @@ const usuarioLogin = async (req, res) => {
     if (!isMatch) return res.status(401).json({ message: 'Usuario o clave incorrecta' });
 
     // Crear token JWT
-    const token = jwt.sign({ id: usuario._id, email: usuario.email, perfil:usuario.perfil }, SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ id: usuario._id, foto:usuario.foto ,email: usuario.email, perfil:usuario.perfil }, SECRET_KEY, { expiresIn: '1h' });
     //res.json({ message: 'Login correcto', token});
     res.json({ message: 'Login correcto', token, usuario: { _id: usuario._id } });
   } catch (error) {
@@ -109,5 +143,6 @@ module.exports = {
   usuarioRegistro,
   usuarioLogin,
   usuarioLogout,
-  getPerfil
+  getPerfil,
+  actualizarFoto
 };
