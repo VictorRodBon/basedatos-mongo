@@ -9,7 +9,7 @@ const UsuarioSchema = new mongoose.Schema({
   perfil: { type: String, required: true },
   numErrores: { type: Number, required: true },
   ultimoAcceso: { type: Date, default: Date.now },
-  foto: {type: String, default: "default.jpg"}
+  foto: {type: String, default: "default.png"}
 });
 
 module.exports = mongoose.model('Usuario2', UsuarioSchema);

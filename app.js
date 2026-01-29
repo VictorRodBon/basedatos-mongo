@@ -38,6 +38,7 @@ app.use('/usuarios', rutasUsuarios);
 app.use('/opiniones', rutasOpiniones);
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //console.log('STATIC PATH:', path.join(__dirname, 'uploads'));
 
